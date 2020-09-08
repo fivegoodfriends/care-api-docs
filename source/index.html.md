@@ -1,14 +1,10 @@
 ---
-title: API Reference
+title: Lookout App API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -21,221 +17,133 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> Endpoint:
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+```shell
+https://app.fivegoodfriends.com.au/care/api
+```
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Lookout App API! This API is very VERY early in the development process, you can't really use it yet :)
+
+We provide code examples in shell (for now). You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+# Versioning
+
+> Versions:
+
+```shell
+https://app.fivegoodfriends.com.au/care/api/v1/
+```
+
+Add the version of the API to the end of the base URL. In this case `v1`. For now this is the only version.
+
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl https://endpoint \
+  -H "Authorization: Token token=ToKeNgOeShErE"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `ToKeNgOeShErE` with your user API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+The API uses an API key per user to allow access. You can get an API key from the authentication API for the logged in user (coming soon).
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Lookout expects the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Token token=ToKeNgOeShErE`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>ToKeNgOeShErE</code> with your user API key.
 </aside>
 
-# Kittens
+# Headers
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+> To provide the appropriate headers, use this code:
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl https://endpoint \
+  -H "User-Agent: Client.App.Name. for iOS 1.0 (000), id com.client-app-name.app, iPhone 14.0.0" \
+  -H "Accept-Encoding: gzip, deflate" \
+  -H "Accept: application/json" \
+  -H "Authorization: Token token=ToKeNgOeShErE"
 ```
 
-```javascript
-const kittn = require('kittn');
+A consistent user agent should be provided for your client app or service.
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+The app can vend zipped content so your app should specify that it can accept this.
 
-> The above command returns JSON structured like this:
+JSON will be returned from the API, unless otherwise stated, so your app should specify this is acceptable.
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+# Profile Avatars
 
-This endpoint retrieves all kittens.
+This endpoint allows the setting and getting of profile avatars.
 
-### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Fetch Avatar for a Specific Profile
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar"
+  -H "Authorization: Token token=ToKeNgOeShErE"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "url": "https://res.cloudinary.com/fgf/image/upload/somethings/v1/avatar/img.jpg"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves the URL to an avatar for a specific profile. You can then use this URl from an external service to display the avatar image.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+PROFILE_ID | The ID of the profile
 
-## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Replace Avatar for a Specific Profile
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+curl "https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar"
+  -X PUT
+  -H "Authorization: Token token=ToKeNgOeShErE"
+  -H 'Content-Type: image/jpeg'
+  -d <IMAGE_DATE>
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "url": "https://res.cloudinary.com/fgf/image/upload/somethings/v1/NEW_avatar/NEW_img.jpg"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint adds the provided image as an avatar to the given Profile ID, replacing the existing avatar.
+
+<aside class="notice">
+You must provide a header describing the type of image. JPEG, PNG, GIF are accepted.
+</aside>
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`PUT https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+PROFILE_ID | The ID of the profile
 
+### Body
+
+The body should contain the avatar image.
