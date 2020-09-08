@@ -20,7 +20,7 @@ code_clipboard: true
 > Endpoint:
 
 ```shell
-https://app.fivegoodfriends.com.au/care/api
+https://fivegoodfriends.thelookoutapp.com/care/api
 ```
 
 Welcome to the Lookout App API! This API is very VERY early in the development process, you can't really use it yet :)
@@ -32,7 +32,7 @@ We provide code examples in shell (for now). You can view code examples in the d
 > Versions:
 
 ```shell
-https://app.fivegoodfriends.com.au/care/api/v1/
+https://fivegoodfriends.thelookoutapp.com/care/api/v1/
 ```
 
 Add the version of the API to the end of the base URL. In this case `v1`. For now this is the only version.
@@ -64,7 +64,7 @@ You must replace <code>ToKeNgOeShErE</code> with your user API key.
 > To provide the appropriate headers, use this code:
 
 ```shell
-curl https://endpoint \
+curl "https://fivegoodfriends.thelookoutapp.com/care/api/v1/..." \
   -H "User-Agent: Client.App.Name. for iOS 1.0 (000), id com.client-app-name.app, iPhone 14.0.0" \
   -H "Accept-Encoding: gzip, deflate" \
   -H "Accept: application/json" \
@@ -85,7 +85,7 @@ This endpoint allows the setting and getting of profile avatars.
 ## Fetch Avatar for a Specific Profile
 
 ```shell
-curl "https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar"
+curl "https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/<PROFILE_ID>/avatar" \
   -H "Authorization: Token token=ToKeNgOeShErE"
 ```
 
@@ -101,7 +101,7 @@ This endpoint retrieves the URL to an avatar for a specific profile. You can the
 
 ### HTTP Request
 
-`GET https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar<ID>`
+`GET https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/<PROFILE_ID>/avatar<ID>`
 
 ### URL Parameters
 
@@ -113,10 +113,10 @@ PROFILE_ID | The ID of the profile
 ## Replace Avatar for a Specific Profile
 
 ```shell
-curl "https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar"
-  -X PUT
-  -H "Authorization: Token token=ToKeNgOeShErE"
-  -H 'Content-Type: image/jpeg'
+curl "https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/<PROFILE_ID>/avatar" \
+  -X PUT \
+  -H "Authorization: Token token=ToKeNgOeShErE" \
+  -H 'Content-Type: image/jpeg' \
   -d <IMAGE_DATE>
 ```
 
@@ -136,7 +136,7 @@ You must provide a header describing the type of image. JPEG, PNG, GIF are accep
 
 ### HTTP Request
 
-`PUT https://app.fivegoodfriends.com.au/care/api/v1/profiles/<PROFILE_ID>/avatar`
+`PUT https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/<PROFILE_ID>/avatar`
 
 ### URL Parameters
 
