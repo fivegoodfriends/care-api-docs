@@ -343,7 +343,7 @@
 <blockquote>
 <p>Endpoint:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://app.fivegoodfriends.com.au/care/api
+<div class="highlight"><pre class="highlight shell tab-shell"><code>https://fivegoodfriends.thelookoutapp.com/care/api
 </code></pre></div>
 <p>Welcome to the Lookout App API! This API is very VERY early in the development process, you can&#39;t really use it yet :)</p>
 
@@ -352,7 +352,7 @@
 <blockquote>
 <p>Versions:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>https://app.fivegoodfriends.com.au/care/api/v1/
+<div class="highlight"><pre class="highlight shell tab-shell"><code>https://fivegoodfriends.thelookoutapp.com/care/api/v1/
 </code></pre></div>
 <p>Add the version of the API to the end of the base URL. In this case <code>v1</code>. For now this is the only version.</p>
 <h1 id='authentication'>Authentication</h1>
@@ -379,7 +379,7 @@ You must replace <code>ToKeNgOeShErE</code> with your user API key.
 <blockquote>
 <p>To provide the appropriate headers, use this code:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://endpoint <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fivegoodfriends.thelookoutapp.com/care/api/v1/..."</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"User-Agent: Client.App.Name. for iOS 1.0 (000), id com.client-app-name.app, iPhone 14.0.0"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Accept-Encoding: gzip, deflate"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
@@ -392,7 +392,7 @@ You must replace <code>ToKeNgOeShErE</code> with your user API key.
 <p>JSON will be returned from the API, unless otherwise stated, so your app should specify this is acceptable.</p>
 <h1 id='profile-avatars'>Profile Avatars</h1>
 <p>This endpoint allows the setting and getting of profile avatars.</p>
-<h2 id='fetch-avatar-for-a-specific-profile'>Fetch Avatar for a Specific Profile</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.fivegoodfriends.com.au/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar"</span>
+<h2 id='fetch-avatar-for-a-specific-profile'>Fetch Avatar for a Specific Profile</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Token token=ToKeNgOeShErE"</span>
 </code></pre></div>
 <blockquote>
@@ -404,7 +404,7 @@ You must replace <code>ToKeNgOeShErE</code> with your user API key.
 </span></code></pre></div>
 <p>This endpoint retrieves the URL to an avatar for a specific profile. You can then use this URl from an external service to display the avatar image.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://app.fivegoodfriends.com.au/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar&lt;ID&gt;</code></p>
+<p><code>GET https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -417,10 +417,10 @@ You must replace <code>ToKeNgOeShErE</code> with your user API key.
 <td>The ID of the profile</td>
 </tr>
 </tbody></table>
-<h2 id='replace-avatar-for-a-specific-profile'>Replace Avatar for a Specific Profile</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.fivegoodfriends.com.au/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar"</span>
-  <span class="nt">-X</span> PUT
-  <span class="nt">-H</span> <span class="s2">"Authorization: Token token=ToKeNgOeShErE"</span>
-  <span class="nt">-H</span> <span class="s1">'Content-Type: image/jpeg'</span>
+<h2 id='replace-avatar-for-a-specific-profile'>Replace Avatar for a Specific Profile</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar"</span> <span class="se">\</span>
+  <span class="nt">-X</span> PUT <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: Token token=ToKeNgOeShErE"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: image/jpeg'</span> <span class="se">\</span>
   <span class="nt">-d</span> &lt;IMAGE_DATE&gt;
 </code></pre></div>
 <blockquote>
@@ -436,7 +436,7 @@ You must replace <code>ToKeNgOeShErE</code> with your user API key.
 You must provide a header describing the type of image. JPEG, PNG, GIF are accepted.
 </aside>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>PUT https://app.fivegoodfriends.com.au/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar</code></p>
+<p><code>PUT https://fivegoodfriends.thelookoutapp.com/care/api/v1/profiles/&lt;PROFILE_ID&gt;/avatar</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
